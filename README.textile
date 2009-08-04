@@ -9,6 +9,7 @@ h2. Was wird verwendet
 * R18n
 * HAML
 * SASS
+* Sanitize (benötigt hpricot)
 
 h3. Sinatra
 
@@ -24,17 +25,23 @@ h3. HAML und SASS
 Eine Alternative zu ERB Templates(HAML) und CSS- Dateien (SASS).
 Weiter Infos für "HAML":http://haml-lang.com/ und "SASS":http://sass-lang.com/ auf den jeweiligen Seiten.
 
+h3. Sanitize
+
+Kurz gesagt: Gem zum absichern von Furmulareingaben. Eine Einführung gibts im GitHub: "http://github.com/rgrove/sanitize/tree/master":http://github.com/rgrove/sanitize/tree/master bzw. hier: "http://wonko.com/post/sanitize":http://wonko.com/post/sanitize
+
 
 h2. Installation
 
 Um diese Demo starten zu können, wird Ruby und folgende (Ruby-)Gems benötigt: *sinatra, sinatra-r18n, haml*
 
 <pre>
-sudo gem install sinatra sinatra-r18n haml
+sudo gem install sinatra sinatra-r18n haml hpricot sanitize
 </pre>
 Es sollten nun folgende Gems installiert sein. Die Versionsnummern könnten ggf. neuer sein als zur Drucklegung dieses Dokumentes.:
 <pre>
 haml (2.2.2)
+hpricot (0.8.1)
+sanitize (1.0.8)
 sinatra (0.9.4)
 sinatra-r18n (0.2.3)
 </pre>
@@ -98,3 +105,23 @@ Zur Verarbeitung des Ajax Request ist folgender Code in der Datei myapp.rb zust�
 
 Wenn es sich nicht um einen Ajax- Request handelt, wird das Layout gerendert (request.xhr? => false). Ansonsten liefert die Funktion nur das gerenderte Template zurück. Wie genau die Rückgabe verarbeitet wird, wurde in der ./public/ajax.js definiert. In diesem Fall wird ein Div mit der ID #htmlExampleTarget mit dem Rückgabewert befüllt.
 
+
+h2. Sanitizing
+
+Dient zum validieren / säubern von Zeichenketten, üblicherweise aus GET oder POST Parametern.
+Die übergebene Zeichenketter wird "gesäubert" zurückgegeben. Jenachdem wie "stark" der Filter eingestellt wurde, überlegen mehr oder weniger Html- Tags / Zeichen den Filter:
+
+@my_name = Sanitize.clean(params[:name])@
+
+<pre>
+<code>
+html = '<b><a href="http://foo.com/">foo</a></b><img src="http://foo.com/bar.jpg" />'
+
+Sanitize.clean(html) # => 'foo'
+Sanitize.clean(html, Sanitize::Config::RESTRICTED) # => '<b>foo</b>'
+Sanitize.clean(html, Sanitize::Config::BASIC) # => '<b><a href="http://foo.com/" rel="nofollow">foo</a></b>'
+Sanitize.clean(html, Sanitize::Config::RELAXED) # => '<b><a href="http://foo.com/">foo</a></b><img src="http://foo.com/bar.jpg" />'
+</code>
+</pre>
+
+Mehr gibts als RDoc "http://rgrove.github.com/sanitize/":http://rgrove.github.com/sanitize/
