@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title= @page_title || "Sinatra R18n Test"
+    %link{:rel => "stylesheet", :href => "stylesheet.css", :type => "text/css", :media => "screen"}
+
+  %body
+    =yield
+    
+    %hr
+
+    %a{:href => "/"} home
+    &nbsp;
+    %a{:href => "/test"} test
+    &nbsp;
+    
+    &nbsp;&nbsp;&nbsp;|&nbsp;
+    
+    %a{:href => "?locale=de"} DE
+    &nbsp;|&nbsp;
+    
+    %a{:href => "?locale=en"} EN
+    &nbsp;|
