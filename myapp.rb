@@ -27,6 +27,14 @@ get '/test' do
   haml :test
 end
 
+get '/form' do
+  haml :form
+end
+
+post '/form' do
+  @my_name = params[:name]
+  haml :form_response, :layout => !request.xhr?
+end
 
 
 
