@@ -1,2 +1,6 @@
 index: "Hallo welt DE"
 test: "Auch hier alles in DE"
+form:
+  label: "Wie ist dein Name:"
+  button: "absenden"
+  response: "Willkommen %1!"
