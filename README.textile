@@ -1,0 +1,84 @@
+h1. Sinatra Demo mit Mehrsprachigkeit
+
+Dieses "Projekt" soll feststellen, ob und wie eine Mehrsprachige Seite mit Sinatra umgesetzt werden kann.
+Sinatra kann bei Projekten eingesetzt werden, bei denen eine Rails- App zu viel Performance "verbraten" würde.
+
+h2. Was wird verwendet
+
+* Sinatra
+* R18n
+* HAML
+* SASS
+
+h3. Sinatra
+
+Hier könnte noch etwas zu Sinatra selbst geschrieben werden. Einen schnellen Einstieg findet man auf der "Homepage":http://www.sinatrarb.com/ unter dem Menüpunkt "Readme":http://www.sinatrarb.com/intro.html
+
+h3. R18n
+
+Tool zum internationalisieren von Merb, Sinatra und Destop Ruby Applikationen.
+Eine kurze Einführung gibts auf der "Homepage":http://r18n.rubyforge.org/#sinatra und im "GitHub":http://github.com/ai/r18n/tree/master
+
+h3. HAML und SASS
+
+Eine Alternative zu ERB Templates(HAML) und CSS- Dateien (SASS).
+Weiter Infos für "HAML":http://haml-lang.com/ und "SASS":http://sass-lang.com/ auf den jeweiligen Seiten.
+
+
+h2. Installation
+
+Um diese Demo starten zu können, wird Ruby und folgende (Ruby-)Gems benötigt: *sinatra, sinatra-r18n, haml*
+
+<pre>
+sudo gem install sinatra sinatra-r18n haml
+</pre>
+Es sollten nun folgende Gems installiert sein. Die Versionsnummern könnten ggf. neuer sein als zur Drucklegung dieses Dokumentes.:
+<pre>
+haml (2.2.2)
+sinatra (0.9.4)
+sinatra-r18n (0.2.3)
+</pre>
+
+zum Starten der App wird einfach die Ruby Datei ausführen: @ruby myapp.rb@
+<pre>
+== Sinatra/0.9.4 has taken the stage on 4567 for development with backup from Mongrel
+</pre>
+
+Wenn alles funktioniert hat, ist die Seite nun im Browser unter "http://127.0.0.1:4567":http://127.0.0.1:4567 erreichbar.
+
+
+h2. Mehrsprachigkeit
+
+Die übersetzungen werden im Ordner ./i18n als YAML gespeichert. Für jede Sprache gibt es eine eintsprechende Datei. z.B. en.yml für English, de.yml für Deutsch. Der Aufbau dieser Dateien ist auf den Seiten von R18n beschrieben. Datums, Währungs und Default- Translations sind ebensovorhanden wie eine Pluralisierung.
+
+Die Sprache wird über den Parameter @params[:locale]@ ausgelesen. R18n schaut zuerst nach, ob dieser Paramter gesetzt ist. Ist dies nicht der Fall, wird versucht die Sprach aus einer Session zu ermitteln, bevor die Default- Sprache EN geladen wird.
+
+Mit einer Session, in der die aktuell verwendete Sprache gespeichert wird, kann die Sprache auch über Links hinweg erhalten bleiben, ohne die aktuelle Sprache als Parameter an den Link einzufügen.
+
+Dazu muss einmal die Session aktiviert werden, und dann der Parameter in der Session abgespeichert werden:
+<code>
+<pre>
+enable  :sessions
+...
+session[:locale] = params[:locale] if params[:locale]
+</pre>
+</code>
+
+In den Views kann dann wie folgt auf die Translations zugegriffen werden:
+
+<code>
+<pre>
+%p= i18n.post.friends
+</pre>
+</code>
+
+Die zugehörige Sprachdatei hat folgenden Aufbau:
+<code>
+<pre>
+post:
+  friends: Post only for friends
+  tags: Post tags: %1
+</pre>
+</code>
+
+
