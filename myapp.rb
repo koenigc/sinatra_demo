@@ -2,6 +2,7 @@
 require 'rubygems'
 require 'haml'
 require 'sass'
+require 'sanitize'
 require 'sinatra'
 require 'sinatra/r18n'
 
@@ -32,7 +33,7 @@ get '/form' do
 end
 
 post '/form' do
-  @my_name = params[:name]
+  @my_name = Sanitize.clean(params[:name])
   haml :form_response, :layout => !request.xhr?
 end
 
