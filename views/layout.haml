@@ -1,8 +1,11 @@
 !!!
 %html
   %head
-    %title= @page_title || "Sinatra R18n Test"
+    %title= @page_title || "Sinatra, R18n, Ajax Test"
     %link{:rel => "stylesheet", :href => "stylesheet.css", :type => "text/css", :media => "screen"}
+    %script{:type => "text/javascript", :src => "/jquery.js"}
+    %script{:type => "text/javascript", :src => "/jquery.form.js"}
+    %script{:type => "text/javascript", :src => "/ajax.js"}
 
   %body
     =yield
@@ -12,6 +15,8 @@
     %a{:href => "/"} home
     &nbsp;
     %a{:href => "/test"} test
+    &nbsp;
+    %a{:href => "/form"} form
     &nbsp;
     
     &nbsp;&nbsp;&nbsp;|&nbsp;
