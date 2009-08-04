@@ -125,3 +125,10 @@ Sanitize.clean(html, Sanitize::Config::RELAXED) # => '<b><a href="http://foo.com
 </pre>
 
 Mehr gibts als RDoc "http://rgrove.github.com/sanitize/":http://rgrove.github.com/sanitize/
+
+h2. Passenger
+
+Um nicht jedesmal bei einer Änderung das Ruby Script neustarten zu müssen, kann man die Sinatra Scripte auch mit dem Passenger (Apache Module) starten lassen.
+
+Hier steht wies geht: "http://blog.zerosum.org/2008/7/4/passenger-3-sinatra":http://blog.zerosum.org/2008/7/4/passenger-3-sinatra
+Sehr simpel, daher denke ich, dass keine weiter Erklärung notwendig ist. Falls doch, wendet euch gerne an mich.
