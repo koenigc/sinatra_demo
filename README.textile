@@ -82,3 +82,19 @@ post:
 </code>
 
 
+h2. Ajax
+
+Um Ajax benutzen zu können, wurde auf jQuery und das Plugin jQuery.Form zurückgegriffen. Die beiden Scripte wurden im Order ./public hinterlegt, und in der Layout Datei eingebunden. Eine einfache Einführung in jQuery.Form gibts "hier":http://malsup.com/jquery/form/ . Die "Registriung" der Ajax Funktion wurde in der Datei ./public/ajax.js implementiert. Diese ist ebenfalls in der Layout Datei eingebunden.
+
+Zur Verarbeitung des Ajax Request ist folgender Code in der Datei myapp.rb zuständig:
+<pre>
+<code>
+  post '/form' do
+    @my_name = params[:name]
+    haml :form_response, :layout => !request.xhr?
+  end
+</code>
+</pre>
+
+Wenn es sich nicht um einen Ajax- Request handelt, wird das Layout gerendert (request.xhr? => false). Ansonsten liefert die Funktion nur das gerenderte Template zurück. Wie genau die Rückgabe verarbeitet wird, wurde in der ./public/ajax.js definiert. In diesem Fall wird ein Div mit der ID #htmlExampleTarget mit dem Rückgabewert befüllt.
+
