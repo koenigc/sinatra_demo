@@ -1,4 +1,7 @@
-%form{:method => "post", :action => "submit"}
+%form{:method => "post", :action => "form", :id => "myForm"}
   %label{:for => "name"}= i18n.form.label
   %input{:type => "text", :name => "name", :id => "name"}
   %input{:type => "submit", :name => "submit", :id => "submit", :value => i18n.form.button}
+
+#htmlExampleTarget
+  &nbsp;
