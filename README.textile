@@ -136,6 +136,8 @@ Sehr simpel, daher denke ich, dass keine weiter Erklärung notwendig ist. Falls 
 
 h2. BDD / Test mit Cucumber
 
+h3. Informationen
+
 Aslak Hellesøy hat im Wiki von Cucumber beschrieben, wie man eine Sinatra- App mit Cucumber und Webrat testen kann.
 "http://wiki.github.com/aslakhellesoy/cucumber/sinatra":http://wiki.github.com/aslakhellesoy/cucumber/sinatra
 
@@ -143,9 +145,9 @@ Ich habe hier weitere Beispiele gefunden.
 * http://github.com/aslakhellesoy/cucumber/tree/da9df2a190b00da5d56e61ec09fda965532eaf6f/examples/sinatra
 * http://tooky.github.com/2009/02/05/getting-started-with-cucumber-and-sinatra.html
 
-Zur Zeit gibt es noch ein Problem mit R18n. Es werden nicht die übersetzten Text angezeigt (in der Response), sondern nur die Indizes der Translateion. 
+h3. Fehler / Problme
 
-Daher sind im Feature folgende Tests vorhanden bzw. auskommentiert:
+Zur Zeit gibt es noch ein Problem mit R18n. Es werden nicht die übersetzten Text angezeigt (in der Response), sondern nur die Indizes der Translateion. Daher sind im Feature folgende Tests vorhanden bzw. auskommentiert:
 
 <pre>
 <code>
@@ -157,5 +159,15 @@ Then I should see 'form.response'
 </code>
 </pre>
 
-An einer Lösung wird noch gearbeitet.
-  
+
+folgender Code macht ebenfalls noch Probleme:
+<pre>
+<code>
+before do
+  session[:locale] = params[:locale] if params[:locale]
+end
+</code>
+</pre>
+
+Ich vermute, dass es hier zu einem Konflikt mit dem @before@ aus RSpec kommt.
+An einer Lösung muss noch gefeilt werden.
