@@ -16,9 +16,9 @@ end
 
 
 # Locale wenn vorhanden in die Session schreiben (?locale=xx)
-before do
-  session[:locale] = params[:locale] if params[:locale]
-end
+# before do
+#   session[:locale] = params[:locale] if params[:locale]
+# end
 
 
 
