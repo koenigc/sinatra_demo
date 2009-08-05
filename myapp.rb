@@ -8,9 +8,11 @@ require 'sinatra/r18n'
 
 
 # KONFIGURATION
-enable  :sessions
-# set :haml, {:format => :html5 } # default Haml format is :xhtml
-# Hier muss ich noch nach den &nbsp; schauen, da der Validator fehler ausgibt. Daher erstmal nur normales (x)html
+configure do
+  set :sessions, true
+  # set :views, "#{File.dirname(__FILE__)}/views"   # View- Pfad für Cucumber definieren
+  # set :haml, {:format => :html5 } # default Haml format is :xhtml
+end
 
 
 # Locale wenn vorhanden in die Session schreiben (?locale=xx)
