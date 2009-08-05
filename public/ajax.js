@@ -11,7 +11,11 @@ $(document).ready(function() {
       $('#htmlExampleTarget').fadeIn('slow'); 
     } 
   });
-
+  
+  
+  $('#myForm > #email').change(function () {
+            var value = $(this).fieldValue();
+            alert('The email is: ' + value[0]);
+          });
+  
 });
-
-
