@@ -1,7 +1,10 @@
 %form{:method => "post", :action => "form", :id => "myForm"}
-  %label{:for => "name"}= i18n.form.label
+  %label{:for => "name"}= i18n.form.label.name
   %input{:type => "text", :name => "name", :id => "name"}
   %input{:type => "submit", :name => "submit", :id => "submit", :value => i18n.form.button}
+  %br
+  %label{:for => "email"}= i18n.form.label.email
+  %input{:type => "text", :name => "email", :id => "email"}
 
 #htmlExampleTarget
   &nbsp;
