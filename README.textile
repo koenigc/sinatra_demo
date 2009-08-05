@@ -132,3 +132,30 @@ Um nicht jedesmal bei einer Änderung das Ruby Script neustarten zu müssen, kan
 
 Hier steht wies geht: "http://blog.zerosum.org/2008/7/4/passenger-3-sinatra":http://blog.zerosum.org/2008/7/4/passenger-3-sinatra
 Sehr simpel, daher denke ich, dass keine weiter Erklärung notwendig ist. Falls doch, wendet euch gerne an mich.
+
+
+h2. BDD / Test mit Cucumber
+
+Aslak Hellesøy hat im Wiki von Cucumber beschrieben, wie man eine Sinatra- App mit Cucumber und Webrat testen kann.
+"http://wiki.github.com/aslakhellesoy/cucumber/sinatra":http://wiki.github.com/aslakhellesoy/cucumber/sinatra
+
+Ich habe hier weitere Beispiele gefunden.
+* http://github.com/aslakhellesoy/cucumber/tree/da9df2a190b00da5d56e61ec09fda965532eaf6f/examples/sinatra
+* http://tooky.github.com/2009/02/05/getting-started-with-cucumber-and-sinatra.html
+
+Zur Zeit gibt es noch ein Problem mit R18n. Es werden nicht die übersetzten Text angezeigt (in der Response), sondern nur die Indizes der Translateion. 
+
+Daher sind im Feature folgende Tests vorhanden bzw. auskommentiert:
+
+<pre>
+<code>
+# Then I should see 'Wie ist dein Name'
+Then I should see 'form.label.name'
+
+# Then I should see 'Willkommen Karl Napf!'
+Then I should see 'form.response'
+</code>
+</pre>
+
+An einer Lösung wird noch gearbeitet.
+  
