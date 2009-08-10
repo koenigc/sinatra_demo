@@ -14,11 +14,14 @@ configure do
   # set :haml, {:format => :html5 } # default Haml format is :xhtml
 end
 
+configure :development do
+  use Rack::Reloader
+end
 
 # Locale wenn vorhanden in die Session schreiben (?locale=xx)
-# before do
-#   session[:locale] = params[:locale] if params[:locale]
-# end
+before do
+  session[:locale] = params[:locale] if params[:locale]
+end
 
 
 
@@ -39,6 +42,10 @@ post '/form' do
   haml :form_response, :layout => !request.xhr?
 end
 
+
+get '/locale' do
+  haml :locale, :layout => false
+end
 
 
 # SASS Stylesheet einbinden

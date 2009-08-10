@@ -6,3 +6,5 @@ form:
     email: "E-Mail"
   button: "absenden"
   response: "Willkommen %1!"
+
+locale_translation: "DE"
