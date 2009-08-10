@@ -64,6 +64,19 @@ describe "myapp" do
     end
   end
   
+
   
+  describe "session testing" do
+    it "should store the selected language in a session" do
+      pending
+
+      english_default_language
+      get "/?locale=de"
+      get "/"
+      last_response.body.should =~ /Hallo welt DE/
+      last_response.body.should_not =~ /Hello world EN/
+    end
+  end
+
 
 end #describe "myapp"
