@@ -13,7 +13,7 @@ describe "myapp" do
   end
   
   
-  describe "GET /" do
+  describe "GET / with default_locale" do
     def do_get
       get "/"
     end #do_get
@@ -38,6 +38,32 @@ describe "myapp" do
     end
 
   end #describe "GET /"
-
+  
+  
+  
+  describe "GET /locale with locale as param" do
+    
+    def do_get locale = nil
+      locale_str = (locale.nil?) ? "" : "?locale=#{locale.to_s}"
+      get "/locale#{locale_str}"
+    end
+    
+    it "should be ok" do
+      do_get
+      last_response.should be_ok
+    end
+    
+    it "should return DE if locale was set to german" do
+      do_get :de
+      last_response.body.should == "DE\n"
+    end
+    
+    it "should return EN if locale was set to english" do
+      do_get :en
+      last_response.body.should == "EN\n"
+    end
+  end
+  
+  
 
 end #describe "myapp"
