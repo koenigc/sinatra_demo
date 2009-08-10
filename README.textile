@@ -134,9 +134,27 @@ Hier steht wies geht: "http://blog.zerosum.org/2008/7/4/passenger-3-sinatra":htt
 Sehr simpel, daher denke ich, dass keine weiter Erklärung notwendig ist. Falls doch, wendet euch gerne an mich.
 
 
+h2. BDD / Test mit RSpec
+
+h3. Informationen
+
+Mittels RSpec lassen sich Sinatra- Apps auch mit R18n testen. Eine Hilfe bei der Integration waren die Spec's vom R18n Projekt selbst.
+Ich habe dazu ein kleines Spec geschrieben, was die Funktion von R18n in der App testet.
+Im Ordner @/spec@ befindet sich die @spec_helper.rb@, in der diegrundlegende Konfig für RSpec drin ist. Die Datei @myapp_spec.rb@ enthält die Test- Examples.
+
+h3. Ausführen der Spec's
+
+Die Spec's können mit dem folgenden Rake Task im Projektordner ausgeführt werden:
+<code>rake specs</code>
+
+
+
 h2. BDD / Test mit Cucumber
 
 h3. Informationen
+
+*Im Moment funktioniert Cucumber nicht so wie gewünscht (R18n). Daher wurde noch zusätzlich RSpec implementiert.*
+
 
 Aslak Hellesøy hat im Wiki von Cucumber beschrieben, wie man eine Sinatra- App mit Cucumber und Webrat testen kann.
 "http://wiki.github.com/aslakhellesoy/cucumber/sinatra":http://wiki.github.com/aslakhellesoy/cucumber/sinatra
