@@ -1,15 +1,43 @@
-# encoding: utf-8
-require File.join(File.dirname(__FILE__), 'spec_helper')
+require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "myapp" do
   before :all do
   end
-  
-  it "GET /" do
-    get '/'
-    last_response.should be_ok
-    # last_response.body.should == "<h1>Запись 1</h1>\n"
+
+  def german_default_language
+    set :default_locale, "de"
+  end
+
+  def english_default_language
+    set :default_locale, "en"
   end
   
   
-end
+  describe "GET /" do
+    def do_get
+      get "/"
+    end #do_get
+    
+    it "should be ok" do
+      do_get
+      last_response.should be_ok
+    end
+    
+    it "should render text in DE" do
+      german_default_language
+      do_get
+      last_response.body.should =~ /Hallo welt DE/
+      last_response.body.should_not =~ /Hello world EN/
+    end
+
+    it "should render text in EN" do
+      english_default_language
+      do_get
+      last_response.body.should =~ /Hello world EN/
+      last_response.body.should_not =~ /Hallo welt DE/
+    end
+
+  end #describe "GET /"
+
+
+end #describe "myapp"
